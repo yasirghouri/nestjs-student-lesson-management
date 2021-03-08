@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { create } from 'node:domain';
+import { Lesson } from './lesson.entity';
 import { CreateLessonInput } from './lesson.input';
 
 import { LessonService } from './lesson.service';
@@ -12,6 +12,11 @@ export class LessonResolver {
   @Query(() => LessonType)
   lesson(@Args('id') id: string) {
     return this.lessonService.getLesson(id);
+  }
+
+  @Query(() => [LessonType])
+  lessons() {
+    return this.lessonService.getLessons();
   }
 
   @Mutation(() => LessonType)
