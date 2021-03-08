@@ -7,10 +7,10 @@ import { LessonType } from './lesson.type';
 export class LessonResolver {
   constructor(private lessonService: LessonService) {}
 
-  //   @Query(() => LessonType)
-  //   lesson(@Args('id') id: string) {
-  //     return;
-  //   }
+  @Query(() => LessonType)
+  lesson(@Args('id') id: string) {
+    return this.lessonService.getLesson(id);
+  }
 
   @Mutation(() => LessonType)
   createLesson(
