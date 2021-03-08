@@ -13,7 +13,9 @@ export class StudentService {
     private studentRepository: Repository<Student>,
   ) {}
 
-  createStudent(createStudentInput: CreateStudentInput): Promise<Student> {
+  async createStudent(
+    createStudentInput: CreateStudentInput,
+  ): Promise<Student> {
     const { firstName, lastName } = createStudentInput;
     const student = this.studentRepository.create({
       id: uuid(),
@@ -22,5 +24,9 @@ export class StudentService {
     });
 
     return this.studentRepository.save(student);
+  }
+
+  async getStudents(): Promise<Student[]> {
+    return this.studentRepository.find();
   }
 }
